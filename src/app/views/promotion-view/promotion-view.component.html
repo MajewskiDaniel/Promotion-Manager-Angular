@@ -1,0 +1,16 @@
+<div class="container">
+  <nav>
+    <app-promotion-steps
+      (activeStep)="activeStepChange($event)"
+    ></app-promotion-steps>
+  </nav>
+  <section class="forms" [ngSwitch]="activeStep">
+    <app-promotion-description *ngSwitchCase="1"></app-promotion-description>
+    <app-promotion-form
+      *ngIf="activeStep > 1 && activeStep < 9"
+    ></app-promotion-form>
+    <app-promotion-tutorial></app-promotion-tutorial>
+    <app-promotion-conditions *ngSwitchCase="1"></app-promotion-conditions>
+    <app-promotion-summary *ngSwitchCase="9"></app-promotion-summary>
+  </section>
+</div>

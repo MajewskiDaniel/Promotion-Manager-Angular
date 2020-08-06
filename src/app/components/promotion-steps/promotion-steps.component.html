@@ -1,0 +1,9 @@
+<li
+  class="step-item"
+  *ngFor="let step of steps; let i = index"
+  (click)="onStepClick(i)"
+  [ngClass]="{ active: activeTab === i }"
+>
+  <div class="step-number">{{ i + 1 }}</div>
+  {{ steps[i] | uppercase }}
+</li>
