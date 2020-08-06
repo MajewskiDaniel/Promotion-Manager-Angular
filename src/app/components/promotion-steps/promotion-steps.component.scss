@@ -1,18 +1,18 @@
 .step-item {
-  width: 220px;
+  width: 180px;
   list-style: none;
   cursor: pointer;
   background-color: lightgrey;
-  margin: 3px 3px 3px 0;
+  margin: 3px 3px 3px 25px;
   padding-left: 30px;
   line-height: 40px;
-  font-size: 14px;
+  font-size: 12px;
   position: relative;
 }
 
 .active {
   font-weight: bold;
-  width: 223px;
+  width: 183px;
 }
 
 .step-number {
@@ -22,7 +22,7 @@
   border-radius: 50%;
   background-color: grey;
   left: -20px;
-  font-size: 20px;
+  font-size: 18px;
   color: white;
   text-align: center;
 }

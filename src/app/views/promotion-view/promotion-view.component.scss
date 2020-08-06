@@ -1,9 +1,28 @@
 .container {
   display: flex;
-}
-.forms {
-  width: 100%;
-  background-color: lightgrey;
-  margin: 3px 0 3px -3px;
-  // padding: 0px 30px;
+  .forms {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    max-height: 840px;
+    width: 100%;
+    background-color: lightgrey;
+    margin: 3px 0 3px -3px;
+    position: relative;
+    .ng-star-inserted {
+      width: 50%;
+    }
+    app-promotion-tutorial {
+      width: 50%;
+    }
+    .vertical-divider {
+      position: absolute;
+      width: 3px;
+      height: 94%;
+      background-color: white;
+      top: 3%;
+      left: calc(50% - 1px);
+    }
+  }
 }

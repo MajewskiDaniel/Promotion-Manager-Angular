@@ -10,7 +10,8 @@
       *ngIf="activeStep > 1 && activeStep < 9"
     ></app-promotion-form>
     <app-promotion-tutorial></app-promotion-tutorial>
-    <app-promotion-conditions *ngSwitchCase="1"></app-promotion-conditions>
     <app-promotion-summary *ngSwitchCase="9"></app-promotion-summary>
+    <app-promotion-conditions *ngSwitchCase="1"></app-promotion-conditions>
+    <div class="vertical-divider"></div>
   </section>
 </div>

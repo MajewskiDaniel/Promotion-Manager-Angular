@@ -1,0 +1,26 @@
+.conditions {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 30px;
+  .header {
+    font-weight: normal;
+    font-size: 14px;
+  }
+  .example-container {
+    .mat-form-field {
+      font-size: 12px;
+    }
+    .portal,
+    .type {
+      width: 100%;
+      padding: 10px 0 0 0;
+    }
+    .mat-form-field-appearance-fill::ng-deep .mat-form-field-flex {
+      background-color: white;
+    }
+
+    mat-label {
+      font-size: 12px;
+    }
+  }
+}

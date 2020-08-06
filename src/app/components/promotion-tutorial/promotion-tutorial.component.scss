@@ -1,0 +1,13 @@
+.tutorial {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 30px;
+  .header {
+    font-weight: normal;
+    font-size: 14px;
+  }
+  .text {
+    font-size: 10px;
+    line-height: 1.2;
+  }
+}
