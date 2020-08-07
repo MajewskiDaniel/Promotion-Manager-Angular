@@ -11,9 +11,34 @@
       font-size: 12px;
     }
     .portal,
-    .type {
+    .type,
+    .benefit-amount {
       width: 100%;
       padding: 10px 0 0 0;
+    }
+    .dates {
+      display: flex;
+      justify-content: space-between;
+    }
+    .start-date,
+    .end-date {
+      width: 45%;
+      padding: 10px 0 0 0;
+    }
+    .radio-buttons {
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+    }
+    .checkboxes {
+      padding-top: 20px;
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+      mat-checkbox {
+        padding-bottom: 10px;
+      }
     }
     .mat-form-field-appearance-fill::ng-deep .mat-form-field-flex {
       background-color: white;

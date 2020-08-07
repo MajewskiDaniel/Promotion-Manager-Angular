@@ -17,5 +17,36 @@
         <mat-option value="option">Other</mat-option>
       </mat-select>
     </mat-form-field>
+    <mat-form-field class="benefit-amount" appearance="fill">
+      <mat-label>Benefit amount</mat-label>
+      <input matInput />
+    </mat-form-field>
+    <section class="dates">
+      <mat-form-field class="start-date" appearance="fill">
+        <mat-label>Start date</mat-label>
+        <input matInput [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <!-- <mat-form-field class="end-date" appearance="fill">
+        <mat-label>Finish date</mat-label>
+        <input matInput [matDatepicker]="pickerEnd" />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="pickerEnd"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field> -->
+    </section>
+    <mat-radio-group class="radio-buttons" aria-label="Select an option">
+      <mat-radio-button value="1">Bussiness conditions</mat-radio-button>
+      <mat-radio-button value="2">Base price 100%</mat-radio-button>
+    </mat-radio-group>
+    <section class="checkboxes">
+      <mat-checkbox>Checked</mat-checkbox>
+      <mat-checkbox>Indeterminate</mat-checkbox>
+    </section>
   </div>
 </div>
+<!-- <mat-checkbox [(ngModel)]="checked">Checked</mat-checkbox>
+<mat-checkbox [(ngModel)]="indeterminate">Indeterminate</mat-checkbox> -->
