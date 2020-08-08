@@ -5,12 +5,29 @@
     ></app-promotion-steps>
   </nav>
   <section class="forms" [ngSwitch]="activeStep">
-    <app-promotion-description *ngSwitchCase="1"></app-promotion-description>
+    <app-promotion-description
+      *ngSwitchCase="1"
+      (descriptionFormValues)="descriptionFormHandler($event)"
+    ></app-promotion-description>
+
     <app-promotion-form
-      *ngIf="activeStep > 1 && activeStep < 9"
+      *ngSwitchCase="2"
+      (saveForm)="saveStep2($event)"
     ></app-promotion-form>
-    <app-promotion-tutorial></app-promotion-tutorial>
+
+    <app-promotion-form
+      *ngSwitchCase="3"
+      (saveForm)="saveStep3($event)"
+    ></app-promotion-form>
+
+    <app-promotion-form
+      *ngSwitchCase="4"
+      (saveForm)="saveStep4($event)"
+    ></app-promotion-form>
+
     <app-promotion-summary *ngSwitchCase="9"></app-promotion-summary>
+
+    <app-promotion-tutorial></app-promotion-tutorial>
     <app-promotion-conditions *ngSwitchCase="1"></app-promotion-conditions>
     <div class="vertical-divider"></div>
   </section>

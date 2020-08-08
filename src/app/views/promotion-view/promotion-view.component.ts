@@ -15,4 +15,10 @@ export class PromotionViewComponent implements OnInit {
   activeStepChange(stepNumber) {
     this.activeStep = stepNumber;
   }
+
+  descriptionFormHandler(form) {}
+
+  saveStep2(form, activeStep) {}
+  saveStep3(form) {}
+  saveStep4(form) {}
 }

@@ -1,52 +1,81 @@
 <div class="conditions">
   <h3 class="header">Conditions</h3>
   <app-divider></app-divider>
-  <div class="example-container">
+  <form [formGroup]="form">
     <mat-form-field class="portal" appearance="fill">
       <mat-label>Portal</mat-label>
       <mat-select matInput formControlName="portal">
-        <mat-option value="option">Option1</mat-option>
-        <mat-option value="option">Option2</mat-option>
+        <mat-option
+          *ngFor="let option of portalOptions"
+          [value]="option.value"
+          >{{ option.label }}</mat-option
+        >
       </mat-select>
+      <mat-error>This field is required!</mat-error>
     </mat-form-field>
     <mat-form-field class="type" appearance="fill">
       <mat-label>Type</mat-label>
-      <mat-select matInput formControlName="portal">
-        <mat-option value="option">Catalog</mat-option>
-        <mat-option value="option">Bonus</mat-option>
-        <mat-option value="option">Other</mat-option>
+      <mat-select matInput formControlName="type">
+        <mat-option
+          *ngFor="let option of catalogueOptions"
+          [value]="option.value"
+        >
+          {{ option.label }}</mat-option
+        >
       </mat-select>
+      <mat-error>This field is required!</mat-error>
     </mat-form-field>
     <mat-form-field class="benefit-amount" appearance="fill">
       <mat-label>Benefit amount</mat-label>
-      <input matInput />
+      <input matInput formControlName="benefit" />
     </mat-form-field>
     <section class="dates">
       <mat-form-field class="start-date" appearance="fill">
         <mat-label>Start date</mat-label>
-        <input matInput [matDatepicker]="picker" />
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-      <!-- <mat-form-field class="end-date" appearance="fill">
-        <mat-label>Finish date</mat-label>
-        <input matInput [matDatepicker]="pickerEnd" />
+        <input
+          matInput
+          [matDatepicker]="startingPicker"
+          formControlName="startDate"
+        />
         <mat-datepicker-toggle
           matSuffix
-          [for]="pickerEnd"
+          [for]="startingPicker"
         ></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field> -->
+        <mat-datepicker #startingPicker></mat-datepicker>
+        <mat-error>This field is required!</mat-error>
+      </mat-form-field>
+      <mat-form-field class="end-date" appearance="fill">
+        <mat-label>Finish date</mat-label>
+        <input
+          matInput
+          [matDatepicker]="endingPicker"
+          formControlName="endDate"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="endingPicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #endingPicker></mat-datepicker>
+      </mat-form-field>
     </section>
-    <mat-radio-group class="radio-buttons" aria-label="Select an option">
-      <mat-radio-button value="1">Bussiness conditions</mat-radio-button>
-      <mat-radio-button value="2">Base price 100%</mat-radio-button>
+    <mat-radio-group
+      class="radio-buttons"
+      aria-label="Select an option"
+      formControlName="conditions"
+    >
+      <mat-radio-button
+        *ngFor="let button of radioButtons"
+        [value]="button.value"
+        >{{ button.label }}</mat-radio-button
+      >
     </mat-radio-group>
     <section class="checkboxes">
-      <mat-checkbox>Checked</mat-checkbox>
-      <mat-checkbox>Indeterminate</mat-checkbox>
+      <mat-checkbox
+        *ngFor="let box of checkboxes"
+        [value]="box.value"
+        [formControlName]="box.formName"
+        >{{ box.label }}</mat-checkbox
+      >
     </section>
-  </div>
+  </form>
 </div>
-<!-- <mat-checkbox [(ngModel)]="checked">Checked</mat-checkbox>
-<mat-checkbox [(ngModel)]="indeterminate">Indeterminate</mat-checkbox> -->

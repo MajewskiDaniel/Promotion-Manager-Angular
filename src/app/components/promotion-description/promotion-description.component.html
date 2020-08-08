@@ -1,20 +1,23 @@
 <div class="description">
   <h3 class="header">Description</h3>
   <app-divider></app-divider>
-  <div class="example-container">
-    <mat-form-field class="marketing-name" appearance="fill">
-      <mat-label>Marketing name</mat-label>
-      <input matInput formControlName="marketingName" />
-    </mat-form-field>
-    <br />
-    <mat-form-field class="technical-name" appearance="fill">
-      <mat-label>Technical name</mat-label>
-      <input matInput />
-    </mat-form-field>
-    <br />
-    <mat-form-field class="description-field" appearance="fill">
-      <mat-label>Description</mat-label>
-      <textarea matInput></textarea>
-    </mat-form-field>
+  <div class="container">
+    <form [formGroup]="form">
+      <mat-form-field class="marketing-name" appearance="fill">
+        <mat-label>Marketing name</mat-label>
+        <input matInput formControlName="marketingName" />
+        <mat-error>This field is required!</mat-error>
+      </mat-form-field>
+      <br />
+      <mat-form-field class="technical-name" appearance="fill">
+        <mat-label>Technical name</mat-label>
+        <input matInput formControlName="technicalName" />
+      </mat-form-field>
+      <br />
+      <mat-form-field class="description-field" appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+    </form>
   </div>
 </div>

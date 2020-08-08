@@ -21,6 +21,7 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatCheckboxModule } from "@angular/material/checkbox";
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
     MatNativeDateModule,
     MatRadioModule,
     MatCheckboxModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
