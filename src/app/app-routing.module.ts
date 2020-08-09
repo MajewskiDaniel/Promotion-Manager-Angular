@@ -17,10 +17,10 @@ const routes: Routes = [
     path: "details",
     component: DetailsViewComponent,
   },
-  {
-    path: "promotion/:id",
-    component: PromotionViewComponent,
-  },
+  // {
+  //   path: "promotion/:id",
+  //   component: PromotionViewComponent,
+  // },
 ];
 
 @NgModule({

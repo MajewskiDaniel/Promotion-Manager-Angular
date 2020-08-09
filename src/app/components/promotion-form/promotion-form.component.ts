@@ -1,42 +1,48 @@
 import {
   Component,
-  OnInit,
   EventEmitter,
   Output,
   OnDestroy,
   Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
 } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
 import { Step2 } from "../../models/step2";
-import { DataService } from "src/app/services/data.service";
 
 @Component({
   selector: "app-promotion-form",
   templateUrl: "./promotion-form.component.html",
   styleUrls: ["./promotion-form.component.scss"],
 })
-export class PromotionFormComponent implements OnInit {
+export class PromotionFormComponent implements OnInit, OnDestroy, OnChanges {
   public form: FormGroup;
   private sub: Subscription;
 
+  @Input() activeStep: number;
+  @Input() formData: Step2;
   @Output() saveForm = new EventEmitter<Step2>();
 
-  constructor(private fb: FormBuilder, private storage: DataService) {}
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
-    let rawData = this.storage.loadData("2") as Step2;
     this.form = this.fb.group({
-      productName: [rawData?.productName || "", Validators.required],
+      productName: ["", Validators.required],
       category: [],
       description: [],
     });
 
     this.sub = this.form.valueChanges.subscribe((values: Step2) => {
       this.saveForm.emit(values);
-      console.log(values);
-      this.storage.saveData("2", values);
     });
+  }
+
+  ngOnChanges({ formData }: SimpleChanges) {
+    if (formData) {
+      this.form.patchValue(this.formData, { emitEvent: false });
+    }
   }
 
   ngOnDestroy() {

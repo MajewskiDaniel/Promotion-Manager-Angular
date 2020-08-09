@@ -19,6 +19,7 @@ export class PromotionDescriptionComponent implements OnInit, OnDestroy {
   private sub: Subscription;
 
   @Output() descriptionFormValues = new EventEmitter<Description>();
+  @Output() stepsDisabled = new EventEmitter<boolean>();
 
   constructor(private fb: FormBuilder) {}
 
@@ -31,7 +32,10 @@ export class PromotionDescriptionComponent implements OnInit, OnDestroy {
 
     this.sub = this.form.valueChanges.subscribe((values: Description) => {
       this.descriptionFormValues.emit(values);
-      console.log(values);
+    });
+
+    this.form.controls["marketingName"].valueChanges.subscribe((value) => {
+      this.stepsDisabled.emit(!!value);
     });
   }
 

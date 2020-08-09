@@ -2,28 +2,34 @@
   <nav>
     <app-promotion-steps
       (activeStep)="activeStepChange($event)"
+      [disabled]="disabled"
     ></app-promotion-steps>
   </nav>
   <section class="forms" [ngSwitch]="activeStep">
     <app-promotion-description
       *ngSwitchCase="1"
       (descriptionFormValues)="descriptionFormHandler($event)"
+      (stepsDisabled)="stepsStatusHandler($event)"
     ></app-promotion-description>
 
-    <app-promotion-form
-      *ngSwitchCase="2"
-      (saveForm)="saveStep2($event)"
-    ></app-promotion-form>
+    <ng-container *ngIf="activeStep > 1 && activeStep < 9">
+      <app-promotion-form
+        *ngSwitchCase="activeStep"
+        (saveForm)="saveStep(activeStep, $event)"
+        [activeStep]="activeStep"
+        [formData]="myForm[activeStep]"
+      ></app-promotion-form>
+    </ng-container>
 
-    <app-promotion-form
+    <!-- <app-promotion-form
       *ngSwitchCase="3"
       (saveForm)="saveStep3($event)"
-    ></app-promotion-form>
+    ></app-promotion-form> -->
 
-    <app-promotion-form
+    <!-- <app-promotion-form
       *ngSwitchCase="4"
       (saveForm)="saveStep4($event)"
-    ></app-promotion-form>
+    ></app-promotion-form> -->
 
     <app-promotion-summary *ngSwitchCase="9"></app-promotion-summary>
 

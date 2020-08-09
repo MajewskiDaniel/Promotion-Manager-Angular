@@ -10,6 +10,12 @@ export class DataService {
     window.localStorage.setItem(step, JSON.stringify(data));
   }
   loadData(step: string) {
-    return JSON.parse(window.localStorage.getItem(step));
+    // return JSON.parse(window.localStorage.getItem(step));
+
+    try {
+      return JSON.parse(window.localStorage.getItem(step));
+    } catch (e) {
+      return null;
+    }
   }
 }

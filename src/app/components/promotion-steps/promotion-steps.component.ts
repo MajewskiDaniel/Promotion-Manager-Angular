@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Output, Input, EventEmitter } from "@angular/core";
 
 @Component({
   selector: "app-promotion-steps",
@@ -7,6 +7,7 @@ import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 })
 export class PromotionStepsComponent implements OnInit {
   @Output() activeStep = new EventEmitter<number>();
+  @Input() disabled: boolean;
 
   steps: string[] = [
     "definition",
@@ -19,14 +20,14 @@ export class PromotionStepsComponent implements OnInit {
     "client limits",
     "summary",
   ];
-  activeTab: number = 0;
+  activeTab: number = 1;
 
   constructor() {}
 
   ngOnInit(): void {}
 
   onStepClick(index: number) {
-    this.activeStep.emit(index + 1);
+    this.activeStep.emit(index);
     this.activeTab = index;
   }
 }
