@@ -1,0 +1,18 @@
+.form {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 30px;
+  .header {
+    font-weight: normal;
+    font-size: 14px;
+  }
+  .container {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 30px;
+    .mat-stroked-button {
+      background-color: #fff;
+      border-color: darkred;
+    }
+  }
+}

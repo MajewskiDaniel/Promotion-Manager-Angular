@@ -4,10 +4,12 @@ import {
   EventEmitter,
   Output,
   OnDestroy,
+  Input,
 } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
 import { Step2 } from "../../models/step2";
+import { DataService } from "src/app/services/data.service";
 
 @Component({
   selector: "app-promotion-form",
@@ -20,11 +22,12 @@ export class PromotionFormComponent implements OnInit {
 
   @Output() saveForm = new EventEmitter<Step2>();
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private storage: DataService) {}
 
   ngOnInit() {
+    let rawData = this.storage.loadData("2") as Step2;
     this.form = this.fb.group({
-      productName: ["", Validators.required],
+      productName: [rawData?.productName || "", Validators.required],
       category: [],
       description: [],
     });
@@ -32,6 +35,7 @@ export class PromotionFormComponent implements OnInit {
     this.sub = this.form.valueChanges.subscribe((values: Step2) => {
       this.saveForm.emit(values);
       console.log(values);
+      this.storage.saveData("2", values);
     });
   }
 

@@ -1,9 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class DataService {
+  constructor() {}
 
-  constructor() { }
+  saveData(step: string, data: any) {
+    window.localStorage.setItem(step, JSON.stringify(data));
+  }
+  loadData(step: string) {
+    return JSON.parse(window.localStorage.getItem(step));
+  }
 }
