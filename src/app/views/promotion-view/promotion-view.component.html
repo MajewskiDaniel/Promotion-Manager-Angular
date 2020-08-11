@@ -8,17 +8,20 @@
   <section class="forms" [ngSwitch]="activeStep">
     <app-promotion-description
       *ngSwitchCase="1"
-      (descriptionFormValues)="descriptionFormHandler($event)"
+      (descriptionForm)="saveDescriptionForm($event)"
       (stepsDisabled)="stepsStatusHandler($event)"
+      [formData]="myForm.step1.descriptionForm"
     ></app-promotion-description>
 
-    <ng-container *ngIf="activeStep > 1 && activeStep < 9">
-      <app-promotion-form
-        *ngSwitchCase="activeStep"
-        (saveForm)="saveStep(activeStep, $event)"
-        [activeStep]="activeStep"
-        [formData]="myForm[activeStep]"
-      ></app-promotion-form>
+    <ng-container *ngFor="let step of [2, 3, 4, 5, 6, 7, 8]">
+      <ng-container *ngIf="activeStep === step">
+        <app-promotion-form
+          *ngSwitchCase="activeStep"
+          (saveForm)="saveStep(activeStep, $event)"
+          [activeStep]="activeStep"
+          [formData]="myForm['step' + activeStep]"
+        ></app-promotion-form>
+      </ng-container>
     </ng-container>
 
     <!-- <app-promotion-form
@@ -32,7 +35,6 @@
     ></app-promotion-form> -->
 
     <app-promotion-summary *ngSwitchCase="9"></app-promotion-summary>
-
     <app-promotion-tutorial></app-promotion-tutorial>
     <app-promotion-conditions *ngSwitchCase="1"></app-promotion-conditions>
     <div class="vertical-divider"></div>

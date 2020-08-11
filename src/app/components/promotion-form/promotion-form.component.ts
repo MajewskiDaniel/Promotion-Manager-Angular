@@ -10,7 +10,7 @@ import {
 } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
-import { Step2 } from "../../models/step2";
+import { Steps } from "../../models/steps";
 
 @Component({
   selector: "app-promotion-form",
@@ -22,26 +22,32 @@ export class PromotionFormComponent implements OnInit, OnDestroy, OnChanges {
   private sub: Subscription;
 
   @Input() activeStep: number;
-  @Input() formData: Step2;
-  @Output() saveForm = new EventEmitter<Step2>();
+  @Input() formData: Steps | undefined; // chyba już undefined nie potrzebne
+  @Output() saveForm = new EventEmitter<Steps>();
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
+    this.sub = this.form.valueChanges.subscribe((values: Steps) => {
+      this.saveForm.emit(values);
+
+      console.log("PromotionFormComponent, this.form:", this.form);
+    });
+  }
+
+  ngOnChanges({ formData }: SimpleChanges) {
     this.form = this.fb.group({
       productName: ["", Validators.required],
       category: [],
       description: [],
     });
 
-    this.sub = this.form.valueChanges.subscribe((values: Step2) => {
-      this.saveForm.emit(values);
-    });
-  }
-
-  ngOnChanges({ formData }: SimpleChanges) {
     if (formData) {
-      this.form.patchValue(this.formData, { emitEvent: false });
+      console.log("PromotionFormComponent, formData:", formData);
+      console.log("PromotionFormComponent, this.formData:", this.formData);
+      console.log("PromotionFormComponent, this.form:", this.form);
+      this.form.patchValue(this.formData);
+      // this.form.patchValue(this.formData, { emitEvent: false });
     }
   }
 

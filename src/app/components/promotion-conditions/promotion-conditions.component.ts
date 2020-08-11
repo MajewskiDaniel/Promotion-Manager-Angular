@@ -8,7 +8,7 @@ import {
 
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
-import { Conditions } from "../../models/step1";
+import { ConditionsForm } from "../../models/step1";
 
 @Component({
   selector: "app-promotion-conditions",
@@ -59,9 +59,9 @@ export class PromotionConditionsComponent implements OnInit, OnDestroy {
       connectWithOther: [],
       backPromotion: [],
     });
-    this.sub = this.form.valueChanges.subscribe((values: Conditions) => {
+    this.sub = this.form.valueChanges.subscribe((values: ConditionsForm) => {
       this.conditionsFormValues.emit(values);
-      console.log(values);
+      console.log("PromotionConditionsComponent::", values);
     });
   }
 

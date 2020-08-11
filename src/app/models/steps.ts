@@ -1,4 +1,4 @@
-export interface Step2 {
+export interface Steps {
   productName: string;
   category: string;
   description: string;

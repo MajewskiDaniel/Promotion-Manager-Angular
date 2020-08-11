@@ -1,15 +1,15 @@
 export interface Step1 {
-  description: Description;
-  conditions: Conditions;
+  descriptionForm: DescriptionForm;
+  conditionsForm: ConditionsForm;
 }
 
-export interface Description {
+export interface DescriptionForm {
   marketingName: string;
   technicalName: string;
   description: string;
 }
 
-export interface Conditions {
+export interface ConditionsForm {
   portal: string; //czy zrobić enum?
   type: string; //czy enum?
   benefitAmount: string;
