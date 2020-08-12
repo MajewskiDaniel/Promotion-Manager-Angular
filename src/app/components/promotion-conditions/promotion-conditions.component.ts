@@ -4,6 +4,9 @@ import {
   Output,
   OnDestroy,
   EventEmitter,
+  Input,
+  OnChanges,
+  SimpleChanges,
 } from "@angular/core";
 
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
@@ -15,10 +18,13 @@ import { ConditionsForm } from "../../models/step1";
   templateUrl: "./promotion-conditions.component.html",
   styleUrls: ["./promotion-conditions.component.scss"],
 })
-export class PromotionConditionsComponent implements OnInit, OnDestroy {
+export class PromotionConditionsComponent
+  implements OnInit, OnDestroy, OnChanges {
   public form: FormGroup;
   private sub: Subscription;
-  @Output() conditionsFormValues = new EventEmitter();
+
+  @Input() formData: ConditionsForm;
+  @Output() conditionsForm = new EventEmitter<ConditionsForm>();
 
   public portalOptions = [
     { value: "portal1", label: "Portal 1" },
@@ -48,7 +54,9 @@ export class PromotionConditionsComponent implements OnInit, OnDestroy {
 
   constructor(private fb: FormBuilder) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ngOnChanges({ formData }: SimpleChanges) {
     this.form = this.fb.group({
       portal: ["", Validators.required],
       type: ["", Validators.required],
@@ -59,8 +67,11 @@ export class PromotionConditionsComponent implements OnInit, OnDestroy {
       connectWithOther: [],
       backPromotion: [],
     });
+    if (formData) {
+      this.form.patchValue(this.formData);
+    }
     this.sub = this.form.valueChanges.subscribe((values: ConditionsForm) => {
-      this.conditionsFormValues.emit(values);
+      this.conditionsForm.emit(values);
       console.log("PromotionConditionsComponent::", values);
     });
   }
