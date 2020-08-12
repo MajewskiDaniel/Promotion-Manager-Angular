@@ -28,15 +28,7 @@ export class PromotionDescriptionComponent
 
   constructor(private fb: FormBuilder) {}
 
-  ngOnInit() {
-    this.sub = this.form.valueChanges.subscribe((values: DescriptionForm) => {
-      this.descriptionForm.emit(values);
-    });
-
-    // this.form.controls["marketingName"].valueChanges.subscribe((value) => {
-    //   this.stepsDisabled.emit(!!value);
-    // });
-  }
+  ngOnInit() {}
 
   ngOnChanges({ formData }: SimpleChanges) {
     this.form = this.fb.group({
@@ -44,8 +36,17 @@ export class PromotionDescriptionComponent
       technicalName: [],
       description: [],
     });
-    console.log("Prom-form-comp, formData::", formData);
+    this.sub = this.form.valueChanges.subscribe((values: DescriptionForm) => {
+      this.descriptionForm.emit(values);
+      console.log("DescriptionFormComponent, this.form:", this.form);
+    });
+    // this.form.controls["marketingName"].valueChanges.subscribe((value) => {
+    //   this.stepsDisabled.emit(!!value);
+    // });
     if (formData) {
+      console.log("Prom-desc-comp, formData::", formData);
+      console.log("Prom-desc-comp, this.formData::", this.formData);
+      console.log("Prom-desc-comp, this.form::", this.form);
       this.form.patchValue(this.formData);
     }
   }

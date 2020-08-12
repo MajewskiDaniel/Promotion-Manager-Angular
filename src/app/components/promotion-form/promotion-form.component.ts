@@ -27,13 +27,7 @@ export class PromotionFormComponent implements OnInit, OnDestroy, OnChanges {
 
   constructor(private fb: FormBuilder) {}
 
-  ngOnInit() {
-    this.sub = this.form.valueChanges.subscribe((values: Steps) => {
-      this.saveForm.emit(values);
-
-      console.log("PromotionFormComponent, this.form:", this.form);
-    });
-  }
+  ngOnInit() {}
 
   ngOnChanges({ formData }: SimpleChanges) {
     this.form = this.fb.group({
@@ -49,6 +43,10 @@ export class PromotionFormComponent implements OnInit, OnDestroy, OnChanges {
       this.form.patchValue(this.formData);
       // this.form.patchValue(this.formData, { emitEvent: false });
     }
+    this.sub = this.form.valueChanges.subscribe((values: Steps) => {
+      this.saveForm.emit(values);
+      console.log("PromotionFormComponent, this.form:", this.form);
+    });
   }
 
   ngOnDestroy() {

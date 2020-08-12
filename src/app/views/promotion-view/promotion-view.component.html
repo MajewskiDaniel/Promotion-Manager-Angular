@@ -23,20 +23,13 @@
         ></app-promotion-form>
       </ng-container>
     </ng-container>
-
-    <!-- <app-promotion-form
-      *ngSwitchCase="3"
-      (saveForm)="saveStep3($event)"
-    ></app-promotion-form> -->
-
-    <!-- <app-promotion-form
-      *ngSwitchCase="4"
-      (saveForm)="saveStep4($event)"
-    ></app-promotion-form> -->
-
     <app-promotion-summary *ngSwitchCase="9"></app-promotion-summary>
     <app-promotion-tutorial></app-promotion-tutorial>
-    <app-promotion-conditions *ngSwitchCase="1"></app-promotion-conditions>
+    <app-promotion-conditions
+      *ngSwitchCase="1"
+      [formData]="myForm.step1.conditionsForm"
+      (conditionsForm)="saveConditionsForm($event)"
+    ></app-promotion-conditions>
     <div class="vertical-divider"></div>
   </section>
 </div>

@@ -3,6 +3,7 @@ import { DataService } from "./../../services/data.service";
 import { Steps } from "../../models/steps";
 import { PromotionData } from "../../models/form";
 import { DescriptionForm } from "src/app/models/step1";
+import { ConditionsForm } from "../../models/step1";
 
 @Component({
   selector: "app-promotion-view",
@@ -20,7 +21,7 @@ export class PromotionViewComponent implements OnInit {
   ngOnInit(): void {
     this.loadStep(this.activeStep);
     // TODO: How to store / reatrive multiple steps ?
-    // this.formularz = this.dataService.loadData();
+    // this.myForm = this.dataService.loadData();
   }
 
   activeStepChange(stepNumber: number) {
@@ -39,8 +40,14 @@ export class PromotionViewComponent implements OnInit {
     this.dataService.save("descForm", form);
   }
 
+  saveConditionsForm(form: ConditionsForm) {
+    this.myForm.step1.conditionsForm = form;
+    console.log("prom-view-comp, SavePromotionsForm", this.myForm, form);
+    this.dataService.save("condForm", form);
+  }
+
   saveStep(activeStep: number, form: Steps) {
-    this.myForm[activeStep] = form;
+    this.myForm["step" + activeStep] = form;
     console.log("prom-view-comp, SaveStep", this.myForm, form);
     this.dataService.save("" + activeStep, form);
   }
