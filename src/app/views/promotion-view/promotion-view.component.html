@@ -3,15 +3,16 @@
     <app-promotion-steps
       (activeStep)="activeStepChange($event)"
       [disabled]="disabled"
+      [typeField]="typeField"
     ></app-promotion-steps>
   </nav>
   <section class="forms" [ngSwitch]="activeStep">
     <app-promotion-description
       *ngSwitchCase="1"
-      (descriptionForm)="saveDescriptionForm($event)"
-      (stepsDisabled)="stepsStatusHandler($event)"
+      (descriptionForm)="saveDescriptionForm(activeStep, $event)"
       [formData]="myForm.step1.descriptionForm"
     ></app-promotion-description>
+    <!-- (stepsDisabled)="stepsStatusHandler($event)" -->
 
     <ng-container *ngFor="let step of [2, 3, 4, 5, 6, 7, 8]">
       <ng-container *ngIf="activeStep === step">
@@ -28,7 +29,7 @@
     <app-promotion-conditions
       *ngSwitchCase="1"
       [formData]="myForm.step1.conditionsForm"
-      (conditionsForm)="saveConditionsForm($event)"
+      (conditionsForm)="saveConditionsForm(activeStep, $event)"
     ></app-promotion-conditions>
     <div class="vertical-divider"></div>
   </section>

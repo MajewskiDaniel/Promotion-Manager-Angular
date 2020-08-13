@@ -24,7 +24,7 @@ export class PromotionDescriptionComponent
 
   @Input() formData: DescriptionForm;
   @Output() descriptionForm = new EventEmitter<DescriptionForm>();
-  @Output() stepsDisabled = new EventEmitter<boolean>();
+  // @Output() stepsDisabled = new EventEmitter<boolean>();
 
   constructor(private fb: FormBuilder) {}
 
@@ -36,19 +36,20 @@ export class PromotionDescriptionComponent
       technicalName: [],
       description: [],
     });
+    // this.form.controls.marketingName.valueChanges.subscribe((value) => {
+    //   console.log("prom-desc-comp, onChanges, value:", value);
+    //   this.stepsDisabled.emit(!!value);
+    // });
+    if (formData) {
+      // console.log("Prom-desc-comp, formData::", formData);
+      // console.log("Prom-desc-comp, this.formData::", this.formData);
+      // console.log("Prom-desc-comp, this.form::", this.form);
+      this.form.patchValue(this.formData);
+    }
     this.sub = this.form.valueChanges.subscribe((values: DescriptionForm) => {
       this.descriptionForm.emit(values);
       console.log("DescriptionFormComponent, this.form:", this.form);
     });
-    // this.form.controls["marketingName"].valueChanges.subscribe((value) => {
-    //   this.stepsDisabled.emit(!!value);
-    // });
-    if (formData) {
-      console.log("Prom-desc-comp, formData::", formData);
-      console.log("Prom-desc-comp, this.formData::", this.formData);
-      console.log("Prom-desc-comp, this.form::", this.form);
-      this.form.patchValue(this.formData);
-    }
   }
 
   ngOnDestroy() {

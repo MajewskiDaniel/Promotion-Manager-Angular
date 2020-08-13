@@ -37,15 +37,15 @@ export class PromotionFormComponent implements OnInit, OnDestroy, OnChanges {
     });
 
     if (formData) {
-      console.log("PromotionFormComponent, formData:", formData);
-      console.log("PromotionFormComponent, this.formData:", this.formData);
-      console.log("PromotionFormComponent, this.form:", this.form);
+      // console.log("PromotionFormComponent, formData:", formData);
+      // console.log("PromotionFormComponent, this.formData:", this.formData);
+      // console.log("PromotionFormComponent, this.form:", this.form);
       this.form.patchValue(this.formData);
       // this.form.patchValue(this.formData, { emitEvent: false });
     }
     this.sub = this.form.valueChanges.subscribe((values: Steps) => {
       this.saveForm.emit(values);
-      console.log("PromotionFormComponent, this.form:", this.form);
+      // console.log("PromotionFormComponent, this.form:", this.form);
     });
   }
 

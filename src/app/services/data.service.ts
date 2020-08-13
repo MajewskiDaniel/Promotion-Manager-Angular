@@ -33,13 +33,12 @@ const DEFAULT_STEPS: Steps = {
 export class DataService {
   constructor(private localStorageService: LocalStorageService) {}
 
-  save(step: string, data: Steps | DescriptionForm | ConditionsForm) {
-    console.log("DataService:: save", step, data);
-
+  save(step: string, data: Steps | Step1) {
+    // console.log("DataService:: save", step, data);
     return this.localStorageService.set(step, data);
   }
 
-  loadStep(stepId: string) {
+  loadStep(stepId: string): Steps | Step1 {
     const step = this.localStorageService.get(stepId);
     console.log("DataService:: loadStep", stepId, step);
     if (step) {

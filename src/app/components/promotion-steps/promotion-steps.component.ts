@@ -1,13 +1,22 @@
-import { Component, OnInit, Output, Input, EventEmitter } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Output,
+  Input,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges,
+} from "@angular/core";
 
 @Component({
   selector: "app-promotion-steps",
   templateUrl: "./promotion-steps.component.html",
   styleUrls: ["./promotion-steps.component.scss"],
 })
-export class PromotionStepsComponent implements OnInit {
+export class PromotionStepsComponent implements OnInit, OnChanges {
   @Output() activeStep = new EventEmitter<number>();
   @Input() disabled: boolean;
+  @Input() typeField: string;
 
   steps: string[] = [
     "definition",
@@ -26,8 +35,18 @@ export class PromotionStepsComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  ngOnChanges({ typeField }: SimpleChanges) {
+    // if (typeField.currentValue === "bonus") {
+    //   console.log("prom-steps-comp, onChanges, typeField:", typeField);
+    // }
+  }
+
   onStepClick(index: number) {
-    this.activeStep.emit(index);
-    this.activeTab = index;
+    if (this.disabled) {
+      return;
+    } else {
+      this.activeStep.emit(index);
+      this.activeTab = index;
+    }
   }
 }

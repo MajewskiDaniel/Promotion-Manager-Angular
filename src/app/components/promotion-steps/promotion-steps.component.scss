@@ -30,3 +30,19 @@
 .active .step-number {
   background-color: darkred;
 }
+
+.disabled {
+  color: grey;
+  .step-number {
+    background-color: #c1c1c1;
+    color: grey;
+  }
+}
+
+.step-item.active.disabled.stepOne {
+  color: black;
+  .step-number {
+    background-color: darkred;
+    color: white;
+  }
+}

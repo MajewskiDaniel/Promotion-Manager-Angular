@@ -2,7 +2,12 @@
   class="step-item"
   *ngFor="let step of steps; let i = index"
   (click)="onStepClick(i + 1)"
-  [ngClass]="{ active: activeTab === i + 1, disabled: disabled === true }"
+  [ngClass]="{
+    active: activeTab === i + 1,
+    disabled: disabled === true,
+    stepOne: activeTab === 1,
+    typeField: typeField === 'bonus' && (i === 3 || 4)
+  }"
 >
   <div class="step-number">{{ i + 1 }}</div>
   {{ steps[i] | uppercase }}

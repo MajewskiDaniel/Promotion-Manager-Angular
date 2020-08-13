@@ -72,7 +72,7 @@ export class PromotionConditionsComponent
     }
     this.sub = this.form.valueChanges.subscribe((values: ConditionsForm) => {
       this.conditionsForm.emit(values);
-      console.log("PromotionConditionsComponent::", values);
+      // console.log("PromotionConditionsComponent::", values);
     });
   }
 
